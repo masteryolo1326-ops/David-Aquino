@@ -13,7 +13,7 @@ try { playwright = require('playwright'); } catch { playwright = require('/opt/n
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = Object.fromEntries(process.argv.slice(2).reduce((acc, a, i, all) => (a.startsWith('--') ? [...acc, [a.slice(2), all[i + 1]]] : acc), []));
-const HANDLE = process.env.HANDLE || '@yourhandle';
+const HANDLE = process.env.HANDLE || '@versionzero.tv';
 
 const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.json': 'application/json' };
 const server = http.createServer((req, res) => {

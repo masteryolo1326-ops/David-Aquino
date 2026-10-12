@@ -8,8 +8,5 @@
 
 **Pinned comment idea:** "Theory 2 is the scariest one and I'll die on this hill" — gets people arguing about which theory wins.
 
-**Before posting:** re-render with your handle in the top-left corner:
-
-```bash
-HANDLE=@yourtiktok ./build.sh
-```
+**Handle:** the video is branded `@versionzero.tv` (top-left). To change it, re-render with
+`HANDLE=@other ./build.sh`.

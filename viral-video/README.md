@@ -27,7 +27,8 @@ uppercase title + grey body, dark tiled cell, dips to black on every cut.
 
 ```bash
 cd viral-video
-HANDLE=@yourtiktok ./build.sh      # ~15 min on 4 CPUs (software WebGL)
+./build.sh                         # ~15 min on 4 CPUs (software WebGL); handle defaults to @versionzero.tv
+HANDLE=@other ./build.sh           # same video, different handle
 node tools/render.mjs --stills 1.5,30,56.8   # quick preview PNGs in build/stills/
 ```
 

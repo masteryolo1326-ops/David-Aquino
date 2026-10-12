@@ -5,7 +5,7 @@ import * as THREE from 'three';
 
 const TL = await (await fetch('./timeline.json')).json();
 const params = new URLSearchParams(location.search);
-const HANDLE = params.get('handle') || '@yourhandle';
+const HANDLE = params.get('handle') || '@versionzero.tv';
 const W = 1080, H = 1920;
 const SHIFT = -0.30; // lens shift: subject sits in the upper third, text below
 const C = TL.cues;
