@@ -1,0 +1,369 @@
+{
+  "episode": "internet-5-seconds",
+  "title": "What If the Entire Internet Disappeared for 5 Seconds?",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "duration": 39.72,
+  "durationInFrames": 1192,
+  "cues": [
+    {
+      "id": "c01",
+      "group": "g01",
+      "text": "What if the entire internet disappeared\u2026",
+      "highlight": [
+        [
+          "entire internet",
+          "cyan"
+        ]
+      ],
+      "start": 0.12,
+      "end": 2.43,
+      "src": [
+        0.07,
+        2.38
+      ]
+    },
+    {
+      "id": "c02",
+      "group": "g01",
+      "text": "for just five seconds?",
+      "highlight": [
+        [
+          "five seconds",
+          "coral"
+        ]
+      ],
+      "start": 2.88,
+      "end": 4.26,
+      "src": [
+        2.895,
+        4.275
+      ]
+    },
+    {
+      "id": "c03",
+      "group": "g02",
+      "text": "Instantly,",
+      "highlight": [],
+      "start": 4.81,
+      "end": 5.465,
+      "src": [
+        4.885,
+        5.54
+      ]
+    },
+    {
+      "id": "c04",
+      "group": "g02",
+      "text": "billions of connections would stop responding.",
+      "highlight": [
+        [
+          "stop responding",
+          "coral"
+        ]
+      ],
+      "start": 5.585,
+      "end": 8.025,
+      "src": [
+        5.74,
+        8.18
+      ]
+    },
+    {
+      "id": "c05",
+      "group": "g03",
+      "text": "Mid-sentence.",
+      "highlight": [
+        [
+          "Mid-sentence.",
+          "coral"
+        ]
+      ],
+      "start": 8.425,
+      "end": 9.3,
+      "src": [
+        8.645,
+        9.52
+      ]
+    },
+    {
+      "id": "c06",
+      "group": "g03",
+      "text": "Mid-game.",
+      "highlight": [
+        [
+          "Mid-game.",
+          "coral"
+        ]
+      ],
+      "start": 9.62,
+      "end": 10.33,
+      "src": [
+        9.79,
+        10.5
+      ]
+    },
+    {
+      "id": "c07",
+      "group": "g03",
+      "text": "Mid-update.",
+      "highlight": [
+        [
+          "Mid-update.",
+          "coral"
+        ]
+      ],
+      "start": 10.65,
+      "end": 11.405,
+      "src": [
+        10.845,
+        11.6
+      ]
+    },
+    {
+      "id": "c08",
+      "group": "g04",
+      "text": "Card payments could stall.",
+      "highlight": [
+        [
+          "stall",
+          "coral"
+        ]
+      ],
+      "start": 11.905,
+      "end": 13.265,
+      "src": [
+        12.095,
+        13.455
+      ]
+    },
+    {
+      "id": "c09",
+      "group": "g05",
+      "text": "Online services could time out.",
+      "highlight": [
+        [
+          "time out",
+          "coral"
+        ]
+      ],
+      "start": 13.565,
+      "end": 15.265,
+      "src": [
+        13.93,
+        15.63
+      ]
+    },
+    {
+      "id": "c10",
+      "group": "g06",
+      "text": "But not everything would stop.",
+      "highlight": [
+        [
+          "not everything",
+          "cyan"
+        ]
+      ],
+      "start": 15.715,
+      "end": 17.15,
+      "src": [
+        16.165,
+        17.6
+      ]
+    },
+    {
+      "id": "c11",
+      "group": "g07",
+      "text": "The power would stay on.",
+      "highlight": [
+        [
+          "stay on",
+          "cyan"
+        ]
+      ],
+      "start": 17.65,
+      "end": 18.825,
+      "src": [
+        18.115,
+        19.29
+      ]
+    },
+    {
+      "id": "c12",
+      "group": "g08",
+      "text": "Offline systems would keep running.",
+      "highlight": [
+        [
+          "keep running",
+          "cyan"
+        ]
+      ],
+      "start": 19.125,
+      "end": 20.87,
+      "src": [
+        19.795,
+        21.54
+      ]
+    },
+    {
+      "id": "c13",
+      "group": "g09",
+      "text": "And some videos wouldn't even pause.",
+      "highlight": [
+        [
+          "wouldn't even pause",
+          "cyan"
+        ]
+      ],
+      "start": 21.17,
+      "end": 23.125,
+      "src": [
+        21.91,
+        23.865
+      ]
+    },
+    {
+      "id": "c14",
+      "group": "g10",
+      "text": "The next few seconds are already downloaded.",
+      "highlight": [
+        [
+          "already downloaded",
+          "cyan"
+        ]
+      ],
+      "start": 23.375,
+      "end": 25.68,
+      "src": [
+        24.36,
+        26.665
+      ]
+    },
+    {
+      "id": "c15",
+      "group": "g11",
+      "text": "Then, five seconds later,",
+      "highlight": [],
+      "start": 26.28,
+      "end": 27.905,
+      "src": [
+        27.115,
+        28.74
+      ]
+    },
+    {
+      "id": "c16",
+      "group": "g11",
+      "text": "the internet comes back.",
+      "highlight": [
+        [
+          "comes back",
+          "cyan"
+        ]
+      ],
+      "start": 28.025,
+      "end": 29.205,
+      "src": [
+        28.985,
+        30.165
+      ]
+    },
+    {
+      "id": "c17",
+      "group": "g12",
+      "text": "Some apps recover right away.",
+      "highlight": [
+        [
+          "right away",
+          "cyan"
+        ]
+      ],
+      "start": 29.605,
+      "end": 31.275,
+      "src": [
+        30.72,
+        32.39
+      ]
+    },
+    {
+      "id": "c18",
+      "group": "g13",
+      "text": "Others are still waiting to retry.",
+      "highlight": [
+        [
+          "waiting to retry",
+          "amber"
+        ]
+      ],
+      "start": 31.575,
+      "end": 33.515,
+      "src": [
+        32.855,
+        34.795
+      ]
+    },
+    {
+      "id": "c19",
+      "group": "g14",
+      "text": "Because getting the connection back isn't the same as getting everything working again.",
+      "highlight": [
+        [
+          "connection back",
+          "cyan"
+        ],
+        [
+          "everything working",
+          "amber"
+        ]
+      ],
+      "start": 33.965,
+      "end": 38.12,
+      "src": [
+        35.21,
+        39.365
+      ],
+      "splits": [
+        {
+          "text": "Because getting the connection back",
+          "start": 33.965,
+          "end": 35.595
+        },
+        {
+          "text": "isn't the same as getting everything working again.",
+          "start": 35.595,
+          "end": 38.12
+        }
+      ]
+    }
+  ],
+  "events": {
+    "blackout": 2.51,
+    "diveStart": 2.98,
+    "sceneFirstSecond": 4.41,
+    "callIn": 7.475,
+    "callFreeze": 8.575,
+    "gameIn": 9.12,
+    "gameFreeze": 9.74,
+    "dashIn": 10.15,
+    "dashStall": 10.77,
+    "sceneRipple": 11.505,
+    "cardTap": 11.805,
+    "cloudIn": 13.365,
+    "cloudTimeout": 14.615,
+    "notEverything": 15.715,
+    "sceneSurprise": 17.2,
+    "tilePower": 17.65,
+    "tileOffline": 19.125,
+    "tileVideo": 21.17,
+    "bufferExplain": 23.225,
+    "sceneReturn": 25.83,
+    "reconnect": 28.745,
+    "recoverInstant": 29.725,
+    "retrying": 31.475,
+    "scenePayoff": 33.515,
+    "chartLaneA": 33.965,
+    "chartLaneB": 35.595,
+    "brand": 38.27
+  }
+}
