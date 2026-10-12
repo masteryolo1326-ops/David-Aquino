@@ -1,8 +1,8 @@
 # Script — "What If the Entire Internet Disappeared for 5 Seconds?"
 
 **Series:** Version Zero · What If · Episode 01
-**Format:** 9:16, 1080 × 1920, 30 fps · **Runtime:** 39.7 s (1,192 frames)
-**Voice:** ElevenLabs premade voice "Matilda" (model `eleven_v4`), played back at 1.05× (pitch preserved)
+**Format:** 9:16, 1080 × 1920, 30 fps · **Runtime:** 39.67 s (1,190 frames)
+**Voice:** ElevenLabs library voice **"Dan Dan"** (`9F4C8ztpNUmXkdDDbz3J`, a young male Spanish-tagged voice reading in English), model `eleven_v4`, natural speed. The take was verified word-for-word with ElevenLabs Scribe; word timings are in `assets/narration/narration-dandan.words.json`.
 
 ## The premise (stated precisely)
 
@@ -18,27 +18,27 @@ Times are where each phrase sits in the finished video. They are generated from 
 
 | # | Time (s) | Line | On-screen emphasis |
 |---|---|---|---|
-| 1 | 0.12 – 2.43 | What if the entire internet disappeared… | **entire internet** (cyan) |
-| 2 | 2.88 – 4.26 | …for just five seconds? | **five seconds** (coral) |
-| 3 | 4.81 – 5.46 | Instantly, | |
-| 4 | 5.58 – 8.03 | billions of connections would stop responding. | **stop responding** (coral) |
-| 5 | 8.43 – 9.30 | Mid-sentence. | coral |
-| 6 | 9.62 – 10.33 | Mid-game. | coral |
-| 7 | 10.65 – 11.40 | Mid-update. | coral |
-| 8 | 11.90 – 13.27 | Card payments could stall. | **stall** (coral) |
-| 9 | 13.56 – 15.27 | Online services could time out. | **time out** (coral) |
-| 10 | 15.71 – 17.15 | But not everything would stop. | **not everything** (cyan) |
-| 11 | 17.65 – 18.82 | The power would stay on. | **stay on** (cyan) |
-| 12 | 19.12 – 20.87 | Offline systems would keep running. | **keep running** (cyan) |
-| 13 | 21.17 – 23.12 | And some videos wouldn't even pause. | **wouldn't even pause** (cyan) |
-| 14 | 23.38 – 25.68 | The next few seconds are already downloaded. | **already downloaded** (cyan) |
-| 15 | 26.28 – 27.91 | Then, five seconds later, | |
-| 16 | 28.02 – 29.20 | the internet comes back. | **comes back** (cyan) |
-| 17 | 29.61 – 31.27 | Some apps recover right away. | **right away** (cyan) |
-| 18 | 31.57 – 33.52 | Others are still waiting to retry. | **waiting to retry** (amber) |
-| 19 | 33.97 – 38.12 | Because getting the connection back isn't the same as getting everything working again. | **connection back** (cyan) / **everything working** (amber) |
+| 1 | 0.12 – 2.25 | What if the entire internet disappeared… | **entire internet** (cyan) |
+| 2 | 2.71 – 4.00 | …for just five seconds? | **five seconds** (coral) |
+| 3 | 4.54 – 5.16 | Instantly, | |
+| 4 | 5.28 – 7.55 | billions of connections would stop responding. | **stop responding** (coral) |
+| 5 | 7.96 – 8.77 | Mid-sentence. | coral |
+| 6 | 9.09 – 9.87 | Mid-game. | coral |
+| 7 | 10.19 – 10.99 | Mid-update. | coral |
+| 8 | 11.49 – 12.67 | Card payments could stall. | **stall** (coral) |
+| 9 | 12.97 – 14.82 | Online services could time out. | **time out** (coral) |
+| 10 | 15.28 – 16.64 | But not everything would stop. | **not everything** (cyan) |
+| 11 | 17.14 – 18.46 | The power would stay on. | **stay on** (cyan) |
+| 12 | 18.76 – 20.59 | Offline systems would keep running. | **keep running** (cyan) |
+| 13 | 20.89 – 22.80 | And some videos wouldn't even pause. | **wouldn't even pause** (cyan) |
+| 14 | 23.05 – 25.36 | The next few seconds are already downloaded. | **already downloaded** (cyan) |
+| 15 | 25.95 – 27.66 | Then, five seconds later, | |
+| 16 | 27.79 – 29.05 | the internet comes back. | **comes back** (cyan) |
+| 17 | 29.45 – 31.16 | Some apps recover right away. | **right away** (cyan) |
+| 18 | 31.45 – 33.42 | Others are still waiting to retry. | **waiting to retry** (amber) |
+| 19 | 33.87 – 38.05 | Because getting the connection back isn't the same as getting everything working again. | **connection back** (cyan) / **everything working** (amber) |
 
-Word count: 87 · Speaking rate ≈ 165 wpm after the 1.05× tempo.
+Word count: 87 · Speaking rate ≈ 167 wpm (31.3 s of speech).
 
 ## On-screen text (non-caption)
 

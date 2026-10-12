@@ -157,6 +157,15 @@ def main():
         flag = "  <-- check" if not 0.6 < ratio < 1.6 else ""
         print(f"  {c['id']} {len(g)} seg  {dur:5.2f}s  x{ratio:4.2f}  {c['text'][:48]}{flag}")
 
+    # Optional word timings (e.g. an ElevenLabs Scribe transcript of the take) for word-level anchors.
+    words = []
+    if nar.get("words") and (ROOT / nar["words"]).exists():
+        raw = json.loads((ROOT / nar["words"]).read_text())
+        words = [w for w in raw.get("words", raw) if w.get("type", "word") == "word"]
+        for w in words:
+            w["start"] /= nar["tempo"]
+            w["end"] /= nar["tempo"]
+
     pad_b, pad_a = nar["padBefore"], nar["padAfter"]
     t = ep["leadIn"]
     out_cues = []
@@ -189,6 +198,12 @@ def main():
             item["splits"] = [
                 {"text": p, "start": round(edges[k], 4), "end": round(edges[k + 1], 4)} for k, p in enumerate(parts)
             ]
+        if words:
+            norm = lambda txt: "".join(ch for ch in txt.lower() if ch.isalnum())
+            item["words"] = [
+                {"text": w["text"], "key": norm(w["text"]), "start": round(w["start"] - s + start, 4)}
+                for w in words if s - 0.15 <= w["start"] < e + 0.05
+            ]
         out_cues.append(item)
         placed.append((s, e, start))
         t = end
@@ -202,7 +217,10 @@ def main():
     for name, ref in ep["events"].items():
         c = by_id[ref["cue"]]
         edge = ref["edge"]
-        if edge.startswith("split"):
+        hit = [w for w in c.get("words", []) if w["key"] == ref.get("word", "").lower()]
+        if hit:  # word anchor wins when the take has word timings; `edge` is the fallback
+            base = hit[0]["start"]
+        elif edge.startswith("split"):
             base = c["splits"][int(edge[5:])]["start"]
         else:
             base = c[edge]

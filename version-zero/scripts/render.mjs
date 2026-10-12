@@ -39,7 +39,7 @@ await renderMedia({
   browserExecutable,
   chromiumOptions,
   scale: preview ? 0.5 : 1,
-  crf: preview ? 26 : 17,
+  crf: preview ? 26 : 21, // 21 ≈ SSIM 0.99 vs 17 at ~60% of the size (TikTok re-encodes uploads anyway)
   pixelFormat: 'yuv420p',
   audioCodec: 'aac',
   audioBitrate: '192k',

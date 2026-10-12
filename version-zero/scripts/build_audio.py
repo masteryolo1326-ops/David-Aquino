@@ -43,6 +43,22 @@ def write_wav(path, x):
         w.writeframes((x * 32767).astype(np.int16).tobytes())
 
 
+def normalize_voice(nar, target_rms_db=-22.0):
+    """Level the narration by its *spoken* RMS (not its peak), so the music/SFX balance is the
+    same whichever voice reads the script; a soft limiter catches the rare peaks above -1 dBFS."""
+    nar = highpass(nar, 75)
+    hop = SR // 100
+    frames = nar[: len(nar) // hop * hop].reshape(-1, hop)
+    rms = np.sqrt(np.mean(frames ** 2, axis=1) + 1e-12)
+    voiced = rms > np.max(rms) * db(-30)
+    level = np.sqrt(np.mean(rms[voiced] ** 2))
+    nar = nar * db(target_rms_db) / level
+    ceiling = db(-1)
+    over = np.abs(nar) > ceiling * 0.8
+    nar[over] = np.sign(nar[over]) * (ceiling * 0.8 + (ceiling * 0.2) * np.tanh((np.abs(nar[over]) - ceiling * 0.8) / (ceiling * 0.2)))
+    return nar
+
+
 def loudnorm(src, dst, target=-14.0, tp=-1.5):
     first = subprocess.run(
         ["ffmpeg", "-hide_banner", "-i", str(src), "-af", f"loudnorm=I={target}:TP={tp}:LRA=11:print_format=json", "-f", "null", "-"],
@@ -72,8 +88,7 @@ def main():
     nar = read_wav(out_dir / "narration.wav")
     if nar.ndim == 2:
         nar = nar.mean(axis=1)
-    nar = highpass(nar, 75)
-    nar = nar / (np.max(np.abs(nar)) + 1e-9) * db(-3)
+    nar = normalize_voice(nar)
     nar = np.pad(nar, (0, max(0, n - len(nar))))[:n]
 
     # Phones can't reproduce deep sub-bass; keep it out of the loudness budget.

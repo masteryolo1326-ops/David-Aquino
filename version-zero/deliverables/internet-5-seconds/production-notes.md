@@ -4,8 +4,8 @@
 
 | File | What it is |
 |---|---|
-| `version-zero-internet-5-seconds.mp4` | Final video: 1080×1920 (9:16), 30 fps, 39.73 s / 1,192 frames, H.264 (yuv420p, CRF 17, x264 *slow*) + AAC 192 kb/s 48 kHz stereo, −14 LUFS |
-| `version-zero-internet-5-seconds-thumbnail.png` | 1080×1920 thumbnail: the blackout moment (frame 76) with captions hidden |
+| `version-zero-internet-5-seconds.mp4` | Final video: 1080×1920 (9:16), 30 fps, 39.67 s / 1,190 frames, H.264 (yuv420p, CRF 21, x264 *slow*) + AAC 192 kb/s 48 kHz stereo, −14 LUFS. Narrated by ElevenLabs "Dan Dan". |
+| `version-zero-internet-5-seconds-thumbnail.png` | 1080×1920 thumbnail: the blackout moment (frame 71) with captions hidden |
 | `script.md` | Final narration with timings, on-screen text, accuracy decisions |
 | `storyboard.md` | Shot-by-shot plan with timecodes, camera, text and sound |
 | `sources.md` | Fact-check, with each source tagged by how it was verified |
@@ -39,11 +39,12 @@ npm run render                               # final → deliverables/internet-5
 # 5) validate
 npm run validate                             # codec/res/fps/frames/decode/black/frozen/silence/loudness/AV-sync
 # thumbnail
-node scripts/stills.mjs --frames 76 --scale 1 --props '{"hideCaptions":true}' --out out/thumb
+node scripts/stills.mjs --frames 71 --scale 1 --props '{"hideCaptions":true}' --out out/thumb
 ```
 
-In the cloud container (4 vCPU, no GPU, WebGL through ANGLE/SwiftShader) the final render took about 9
-minutes. On a machine with a GPU, set `chromiumOptions.gl` in `scripts/render-config.mjs` to suit
+In the cloud container (4 vCPU, no GPU, WebGL through ANGLE/SwiftShader) the final render takes about 8–9
+minutes. CRF 21 was chosen after measuring SSIM 0.990 against a CRF 17 master at about 60% of the size;
+the CRF 17 master was 79 MB. On a machine with a GPU, set `chromiumOptions.gl` in `scripts/render-config.mjs` to suit
 (`angle` usually works; `null` uses the default).
 
 ## Architecture (the reusable pipeline)
@@ -84,13 +85,14 @@ version-zero/
 
 ### The timing model: why nothing can drift
 1. `episode.json` holds the script as **cues**: text, the gap before each, a caption group and highlights. It also holds **events** anchored to cue edges, for example `"reconnect": {cue: "c16", edge: "start", offset: 0.72}`.
-2. `build_timeline.py` decodes the take, finds speech segments, and **fails loudly** if their count doesn't match the cues. It then places each phrase at its cue time and resolves every event to absolute seconds. A cue can span several segments (`"segments": 2`) when a phrase has an internal pause; that also gives exact caption split points.
+2. `build_timeline.py` decodes the take and finds its speech segments. Different voices pause in different places, so the segments are **aligned** to the cues by a small dynamic program. It matches each cue's expected speaking time (from its character count) and keeps long pauses between cues rather than inside them. The script prints a per-cue duration ratio so a skipped or misread line stands out. It then places each phrase at its cue time and resolves every event to absolute seconds.
+   - If the take has word timings (`narration.words`, for example an ElevenLabs Scribe transcript), events can anchor to a **word**: `"reconnect": {cue: "c16", word: "back"}` puts the reconnection hit exactly on "back". Caption splits snap to a real pause near the proportional point.
 3. Visuals (`useEvents()`), captions (cue times) and sound (`audio/<episode>.py`) all read the same `timeline.json`. Change a gap or re-record the voice, rebuild, and everything follows.
 4. All animation is a pure function of the frame: seeded randomness, no `Math.random()` and no wall-clock time. Any frame renders identically in isolation, which Remotion's parallel tabs require. R3F uniforms and cameras are set in `useLayoutEffect` so they apply before `@remotion/three` calls `advance()`.
 
 ### Making the next episode
 1. Copy `src/episodes/internet-5-seconds/` to `src/episodes/<new-id>/` and rewrite `episode.json` (cues + events).
-2. Record narration (one take with paragraph breaks between cues), drop it in `assets/narration/`, and run `build_timeline.py --episode <new-id>`.
+2. Record narration (one take with blank lines between cue paragraphs), drop it in `assets/narration/`, optionally add its word timings, and run `build_timeline.py --episode <new-id>`. Re-voicing an existing episode is the same: point `narration.source` at the new take, rebuild the timeline and audio, then re-render. The narration is levelled by its spoken RMS (`normalize_voice`), so the music/SFX balance carries over to any voice.
 3. Write `scripts/audio/<new_id>.py` with a `render(timeline)` that returns `{music, sfx}`, reusing `synth.py` and the instruments in the episode-01 module.
 4. Compose scenes from `src/series/*`, register the composition in `src/Root.tsx`, then preview, inspect, render and validate.
 
@@ -112,7 +114,7 @@ version-zero/
 
 | Asset | Source / licence |
 |---|---|
-| Narration | ElevenLabs, premade voice "Matilda", `eleven_v4`, generated for this project. **ElevenLabs' rights depend on the account plan**: free-tier output requires attribution and is not licensed for commercial use. Confirm the plan before monetizing. |
+| Narration | ElevenLabs library voice "Dan Dan" (`9F4C8ztpNUmXkdDDbz3J`), `eleven_v4`, generated for this project after the account was upgraded to a paid plan. Commercial use is governed by your ElevenLabs plan and the library voice's terms; confirm both before monetizing. An earlier take with the premade voice "Matilda" (`assets/narration/narration-take1.mp3`) was generated on the Free Tier, which is non-commercial and requires attribution. It is kept only as a reference and is not used in the final video. |
 | Music & SFX | Original, synthesized from code in `scripts/audio/`. No samples, no third-party audio. |
 | Land data | Natural Earth (public domain) via `world-atlas` (ISC) |
 | Fonts | Space Grotesk, JetBrains Mono: SIL Open Font License |
@@ -122,7 +124,12 @@ version-zero/
 ## Quality control performed
 
 - **Research pass**: 13 technical claims checked; the script was adjusted where needed (payments, live video, "billions", the recovery claim). See `sources.md`.
-- **Narration check**: the take's speech segments matched the 19 script cues one-to-one (21 segments, two cues spanning two). Per-cue voice-to-bed ratio is ≥10 dB everywhere and 12–21 dB on all but the reconnect hit. Integrated loudness is −14.3 LUFS. The sub-bass drone was moved up an octave after spectrogram review.
+- **Narration check (Dan Dan)**:
+  - An ElevenLabs Scribe transcript of the take matches the script word-for-word (89 tokens, in order).
+  - The aligner mapped its 21 speech segments onto the 19 cues with every duration ratio in range. The ×1.6 on "Mid-game." is an expected stretch on a very short emphatic phrase.
+  - Per-cue voice-to-bed ratio is 12.6–21.5 dB; integrated loudness is −14 LUFS.
+  - The sub-bass drone was moved up an octave after spectrogram review.
+  - Moving to RMS-based voice levelling fixed a bed that sat 18–26 dB under this denser voice.
 - **Visual inspection**: stills from every scene at half and full resolution, plus a half-res preview sampled every 0.42 s. Fixes made:
   - Globe overlapped the captions; land dots were too dim.
   - The first city aerial was too dark and flat.
@@ -137,17 +144,17 @@ version-zero/
 
 ## Known limitations & incomplete elements
 
-- **One narration take.** The ElevenLabs account had quota for one take; three of the four requested variations failed, uncharged, with a quota error. About 167 credits remain. No alternative reads were compared.
+- **One narration take per voice.** No alternative reads were compared. Dan Dan is tagged as a Spanish-language voice, so the English read carries a Spanish accent; this was the requested voice. One first attempt failed, uncharged, when ElevenLabs disabled the Free Tier on the account for "unusual activity" (likely the cloud session's proxy). It succeeded after the upgrade.
 - **No human listening or phone viewing.** Audio was validated by measurement: segmentation, loudness, voice-to-bed ratios, spectrogram, sync. Visuals were checked by frame inspection. A human pass on headphones and a real phone is recommended before publishing.
 - **Procedural score.** The music and SFX are original and functional, but a composer or sound-library pass would raise polish. Stems are exported (`public/audio/<ep>/music.wav`, `sfx.wav`, `narration.wav`) to make that easy.
-- **Phrase-level captions.** Word-level timestamps weren't available from the TTS route used. Captions reveal per phrase, and the first phrase is on screen from frame 0.
+- **Phrase-level captions.** Captions reveal per phrase, and the first phrase is on screen from frame 0. Word timings now exist for the Dan Dan take, but they are only used for event anchors; per-word caption animation was intentionally not used.
 - **Stylization.** The countdown is slowed about 5× while cars, signals and video playback move at natural speed. The traffic-signal cycle is sped up. The recovery chart and beacon timings are illustrative. All of this is labelled in `sources.md`.
 - **Software WebGL.** Rendering in a GPU-less container uses SwiftShader. It is deterministic and validated, but slower than GPU rendering.
 - **Thumbnail text.** The thumbnail carries only in-scene text (`INTERNET: OFFLINE`, `5.00 s`). Platform title overlays are left to the uploader.
 
 ## Opportunities for future episodes
 
-- Word-level caption timing: request ElevenLabs timestamps, or run forced alignment, and feed `splits` automatically.
+- Word-level caption styles (karaoke highlight) driven by the word timings that now flow through `timeline.json`.
 - A `Scene` primitive with declarative enter/exit transitions to reduce per-scene boilerplate.
 - More series assets: a reusable vehicle and airport kit, a weather layer, and a satellite/orbit kit (good for GPS or space episodes).
 - Automated safe-zone linting: render a debug overlay of TikTok's UI and flag elements crossing it.

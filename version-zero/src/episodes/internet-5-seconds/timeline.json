@@ -4,8 +4,8 @@
   "fps": 30,
   "width": 1080,
   "height": 1920,
-  "duration": 39.805,
-  "durationInFrames": 1194,
+  "duration": 39.655,
+  "durationInFrames": 1190,
   "cues": [
     {
       "id": "c01",
@@ -18,10 +18,42 @@
         ]
       ],
       "start": 0.12,
-      "end": 2.43,
+      "end": 2.255,
       "src": [
-        0.07,
-        2.38
+        0.005,
+        2.14
+      ],
+      "words": [
+        {
+          "text": "What",
+          "key": "what",
+          "start": 0.115
+        },
+        {
+          "text": "if",
+          "key": "if",
+          "start": 0.355
+        },
+        {
+          "text": "the",
+          "key": "the",
+          "start": 0.475
+        },
+        {
+          "text": "entire",
+          "key": "entire",
+          "start": 0.595
+        },
+        {
+          "text": "internet",
+          "key": "internet",
+          "start": 1.155
+        },
+        {
+          "text": "disappeared\u2026",
+          "key": "disappeared",
+          "start": 1.635
+        }
       ]
     },
     {
@@ -34,11 +66,33 @@
           "coral"
         ]
       ],
-      "start": 2.88,
-      "end": 4.26,
+      "start": 2.705,
+      "end": 3.995,
       "src": [
-        2.895,
-        4.275
+        2.525,
+        3.815
+      ],
+      "words": [
+        {
+          "text": "for",
+          "key": "for",
+          "start": 2.66
+        },
+        {
+          "text": "just",
+          "key": "just",
+          "start": 2.9
+        },
+        {
+          "text": "five",
+          "key": "five",
+          "start": 3.14
+        },
+        {
+          "text": "seconds?",
+          "key": "seconds",
+          "start": 3.46
+        }
       ]
     },
     {
@@ -46,11 +100,18 @@
       "group": "g02",
       "text": "Instantly,",
       "highlight": [],
-      "start": 4.81,
-      "end": 5.465,
+      "start": 4.545,
+      "end": 5.16,
       "src": [
-        4.885,
-        5.54
+        4.395,
+        5.01
+      ],
+      "words": [
+        {
+          "text": "Instantly,",
+          "key": "instantly",
+          "start": 4.55
+        }
       ]
     },
     {
@@ -63,11 +124,43 @@
           "coral"
         ]
       ],
-      "start": 5.585,
-      "end": 8.025,
+      "start": 5.28,
+      "end": 7.555,
       "src": [
-        5.74,
-        8.18
+        5.19,
+        7.465
+      ],
+      "words": [
+        {
+          "text": "billions",
+          "key": "billions",
+          "start": 5.37
+        },
+        {
+          "text": "of",
+          "key": "of",
+          "start": 5.81
+        },
+        {
+          "text": "connections",
+          "key": "connections",
+          "start": 5.93
+        },
+        {
+          "text": "would",
+          "key": "would",
+          "start": 6.49
+        },
+        {
+          "text": "stop",
+          "key": "stop",
+          "start": 6.73
+        },
+        {
+          "text": "responding.",
+          "key": "responding",
+          "start": 7.09
+        }
       ]
     },
     {
@@ -80,11 +173,18 @@
           "coral"
         ]
       ],
-      "start": 8.425,
-      "end": 9.3,
+      "start": 7.955,
+      "end": 8.77,
       "src": [
-        8.645,
-        9.52
+        7.835,
+        8.65
+      ],
+      "words": [
+        {
+          "text": "Mid-sentence.",
+          "key": "midsentence",
+          "start": 8.04
+        }
       ]
     },
     {
@@ -97,11 +197,18 @@
           "coral"
         ]
       ],
-      "start": 9.62,
-      "end": 10.335,
+      "start": 9.09,
+      "end": 9.865,
       "src": [
-        9.79,
-        10.505
+        8.88,
+        9.655
+      ],
+      "words": [
+        {
+          "text": "Mid-game.",
+          "key": "midgame",
+          "start": 9.17
+        }
       ]
     },
     {
@@ -114,11 +221,18 @@
           "coral"
         ]
       ],
-      "start": 10.655,
-      "end": 11.41,
+      "start": 10.185,
+      "end": 10.995,
       "src": [
-        10.845,
-        11.6
+        9.93,
+        10.74
+      ],
+      "words": [
+        {
+          "text": "Mid-update.",
+          "key": "midupdate",
+          "start": 10.335
+        }
       ]
     },
     {
@@ -131,11 +245,33 @@
           "coral"
         ]
       ],
-      "start": 11.91,
-      "end": 13.275,
+      "start": 11.495,
+      "end": 12.67,
       "src": [
-        12.095,
-        13.46
+        11.345,
+        12.52
+      ],
+      "words": [
+        {
+          "text": "Card",
+          "key": "card",
+          "start": 11.51
+        },
+        {
+          "text": "payments",
+          "key": "payments",
+          "start": 11.75
+        },
+        {
+          "text": "could",
+          "key": "could",
+          "start": 12.15
+        },
+        {
+          "text": "stall.",
+          "key": "stall",
+          "start": 12.31
+        }
       ]
     },
     {
@@ -148,11 +284,38 @@
           "coral"
         ]
       ],
-      "start": 13.575,
-      "end": 15.275,
+      "start": 12.97,
+      "end": 14.825,
       "src": [
-        13.93,
-        15.63
+        12.92,
+        14.775
+      ],
+      "words": [
+        {
+          "text": "Online",
+          "key": "online",
+          "start": 13.01
+        },
+        {
+          "text": "services",
+          "key": "services",
+          "start": 13.33
+        },
+        {
+          "text": "could",
+          "key": "could",
+          "start": 14.05
+        },
+        {
+          "text": "time",
+          "key": "time",
+          "start": 14.33
+        },
+        {
+          "text": "out.",
+          "key": "out",
+          "start": 14.53
+        }
       ]
     },
     {
@@ -165,11 +328,38 @@
           "cyan"
         ]
       ],
-      "start": 15.725,
-      "end": 17.225,
+      "start": 15.275,
+      "end": 16.645,
       "src": [
-        16.165,
-        17.665
+        15.285,
+        16.655
+      ],
+      "words": [
+        {
+          "text": "But",
+          "key": "but",
+          "start": 15.27
+        },
+        {
+          "text": "not",
+          "key": "not",
+          "start": 15.43
+        },
+        {
+          "text": "everything",
+          "key": "everything",
+          "start": 15.67
+        },
+        {
+          "text": "would",
+          "key": "would",
+          "start": 16.15
+        },
+        {
+          "text": "stop.",
+          "key": "stop",
+          "start": 16.43
+        }
       ]
     },
     {
@@ -182,11 +372,38 @@
           "cyan"
         ]
       ],
-      "start": 17.725,
-      "end": 18.9,
+      "start": 17.145,
+      "end": 18.46,
       "src": [
-        18.115,
-        19.29
+        17.075,
+        18.39
+      ],
+      "words": [
+        {
+          "text": "The",
+          "key": "the",
+          "start": 17.19
+        },
+        {
+          "text": "power",
+          "key": "power",
+          "start": 17.35
+        },
+        {
+          "text": "would",
+          "key": "would",
+          "start": 17.75
+        },
+        {
+          "text": "stay",
+          "key": "stay",
+          "start": 17.95
+        },
+        {
+          "text": "on.",
+          "key": "on",
+          "start": 18.15
+        }
       ]
     },
     {
@@ -199,11 +416,38 @@
           "cyan"
         ]
       ],
-      "start": 19.2,
-      "end": 20.945,
+      "start": 18.76,
+      "end": 20.585,
       "src": [
-        19.795,
-        21.54
+        18.83,
+        20.655
+      ],
+      "words": [
+        {
+          "text": "Offline",
+          "key": "offline",
+          "start": 18.73
+        },
+        {
+          "text": "systems",
+          "key": "systems",
+          "start": 19.21
+        },
+        {
+          "text": "would",
+          "key": "would",
+          "start": 19.69
+        },
+        {
+          "text": "keep",
+          "key": "keep",
+          "start": 19.93
+        },
+        {
+          "text": "running.",
+          "key": "running",
+          "start": 20.17
+        }
       ]
     },
     {
@@ -216,11 +460,43 @@
           "cyan"
         ]
       ],
-      "start": 21.245,
-      "end": 23.2,
+      "start": 20.885,
+      "end": 22.795,
       "src": [
-        21.91,
-        23.865
+        21.065,
+        22.975
+      ],
+      "words": [
+        {
+          "text": "And",
+          "key": "and",
+          "start": 20.86
+        },
+        {
+          "text": "some",
+          "key": "some",
+          "start": 21.02
+        },
+        {
+          "text": "videos",
+          "key": "videos",
+          "start": 21.26
+        },
+        {
+          "text": "wouldn't",
+          "key": "wouldnt",
+          "start": 21.82
+        },
+        {
+          "text": "even",
+          "key": "even",
+          "start": 22.06
+        },
+        {
+          "text": "pause.",
+          "key": "pause",
+          "start": 22.3
+        }
       ]
     },
     {
@@ -233,11 +509,48 @@
           "cyan"
         ]
       ],
-      "start": 23.45,
-      "end": 25.755,
+      "start": 23.045,
+      "end": 25.355,
       "src": [
-        24.36,
-        26.665
+        23.545,
+        25.855
+      ],
+      "words": [
+        {
+          "text": "The",
+          "key": "the",
+          "start": 23.02
+        },
+        {
+          "text": "next",
+          "key": "next",
+          "start": 23.18
+        },
+        {
+          "text": "few",
+          "key": "few",
+          "start": 23.42
+        },
+        {
+          "text": "seconds",
+          "key": "seconds",
+          "start": 23.58
+        },
+        {
+          "text": "are",
+          "key": "are",
+          "start": 24.06
+        },
+        {
+          "text": "already",
+          "key": "already",
+          "start": 24.3
+        },
+        {
+          "text": "downloaded.",
+          "key": "downloaded",
+          "start": 24.7
+        }
       ]
     },
     {
@@ -245,11 +558,33 @@
       "group": "g11",
       "text": "Then, five seconds later,",
       "highlight": [],
-      "start": 26.355,
-      "end": 27.98,
+      "start": 25.955,
+      "end": 27.665,
       "src": [
-        27.115,
-        28.74
+        26.285,
+        27.995
+      ],
+      "words": [
+        {
+          "text": "Then,",
+          "key": "then",
+          "start": 25.99
+        },
+        {
+          "text": "five",
+          "key": "five",
+          "start": 26.71
+        },
+        {
+          "text": "seconds",
+          "key": "seconds",
+          "start": 26.95
+        },
+        {
+          "text": "later,",
+          "key": "later",
+          "start": 27.43
+        }
       ]
     },
     {
@@ -262,11 +597,33 @@
           "cyan"
         ]
       ],
-      "start": 28.1,
-      "end": 29.28,
+      "start": 27.785,
+      "end": 29.055,
       "src": [
-        28.985,
-        30.165
+        28.25,
+        29.52
+      ],
+      "words": [
+        {
+          "text": "the",
+          "key": "the",
+          "start": 27.775
+        },
+        {
+          "text": "internet",
+          "key": "internet",
+          "start": 27.935
+        },
+        {
+          "text": "comes",
+          "key": "comes",
+          "start": 28.415
+        },
+        {
+          "text": "back.",
+          "key": "back",
+          "start": 28.655
+        }
       ]
     },
     {
@@ -279,11 +636,38 @@
           "cyan"
         ]
       ],
-      "start": 29.68,
-      "end": 31.355,
+      "start": 29.455,
+      "end": 31.155,
       "src": [
-        30.715,
-        32.39
+        29.975,
+        31.675
+      ],
+      "words": [
+        {
+          "text": "Some",
+          "key": "some",
+          "start": 29.48
+        },
+        {
+          "text": "apps",
+          "key": "apps",
+          "start": 29.8
+        },
+        {
+          "text": "recover",
+          "key": "recover",
+          "start": 30.24
+        },
+        {
+          "text": "right",
+          "key": "right",
+          "start": 30.52
+        },
+        {
+          "text": "away.",
+          "key": "away",
+          "start": 30.76
+        }
       ]
     },
     {
@@ -296,11 +680,43 @@
           "amber"
         ]
       ],
-      "start": 31.655,
-      "end": 33.6,
+      "start": 31.455,
+      "end": 33.42,
       "src": [
-        32.855,
-        34.8
+        32.14,
+        34.105
+      ],
+      "words": [
+        {
+          "text": "Others",
+          "key": "others",
+          "start": 31.475
+        },
+        {
+          "text": "are",
+          "key": "are",
+          "start": 31.955
+        },
+        {
+          "text": "still",
+          "key": "still",
+          "start": 32.115
+        },
+        {
+          "text": "waiting",
+          "key": "waiting",
+          "start": 32.435
+        },
+        {
+          "text": "to",
+          "key": "to",
+          "start": 32.755
+        },
+        {
+          "text": "retry.",
+          "key": "retry",
+          "start": 33.115
+        }
       ]
     },
     {
@@ -317,53 +733,120 @@
           "amber"
         ]
       ],
-      "start": 34.05,
-      "end": 38.205,
+      "start": 33.87,
+      "end": 38.055,
       "src": [
-        35.21,
-        39.365
+        34.59,
+        38.775
       ],
       "splits": [
         {
           "text": "Because getting the connection back",
-          "start": 34.05,
-          "end": 35.68
+          "start": 33.87,
+          "end": 35.625
         },
         {
           "text": "isn't the same as getting everything working again.",
-          "start": 35.68,
-          "end": 38.205
+          "start": 35.625,
+          "end": 38.055
+        }
+      ],
+      "words": [
+        {
+          "text": "Because",
+          "key": "because",
+          "start": 33.84
+        },
+        {
+          "text": "getting",
+          "key": "getting",
+          "start": 34.16
+        },
+        {
+          "text": "the",
+          "key": "the",
+          "start": 34.44
+        },
+        {
+          "text": "connection",
+          "key": "connection",
+          "start": 34.56
+        },
+        {
+          "text": "back",
+          "key": "back",
+          "start": 34.96
+        },
+        {
+          "text": "isn't",
+          "key": "isnt",
+          "start": 35.6
+        },
+        {
+          "text": "the",
+          "key": "the",
+          "start": 35.92
+        },
+        {
+          "text": "same",
+          "key": "same",
+          "start": 36.08
+        },
+        {
+          "text": "as",
+          "key": "as",
+          "start": 36.24
+        },
+        {
+          "text": "getting",
+          "key": "getting",
+          "start": 36.4
+        },
+        {
+          "text": "everything",
+          "key": "everything",
+          "start": 36.8
+        },
+        {
+          "text": "working",
+          "key": "working",
+          "start": 37.28
+        },
+        {
+          "text": "again.",
+          "key": "again",
+          "start": 37.6
         }
       ]
     }
   ],
   "events": {
-    "blackout": 2.51,
-    "diveStart": 2.98,
-    "sceneFirstSecond": 4.41,
-    "callIn": 7.475,
-    "callFreeze": 8.575,
-    "gameIn": 9.12,
-    "gameFreeze": 9.74,
-    "dashIn": 10.155,
-    "dashStall": 10.775,
-    "sceneRipple": 11.51,
-    "cardTap": 11.81,
-    "cloudIn": 13.375,
-    "cloudTimeout": 14.625,
-    "notEverything": 15.725,
-    "sceneSurprise": 17.275,
-    "tilePower": 17.725,
-    "tileOffline": 19.2,
-    "tileVideo": 21.245,
-    "bufferExplain": 23.3,
-    "sceneReturn": 25.905,
-    "reconnect": 28.82,
-    "recoverInstant": 29.8,
-    "retrying": 31.555,
-    "scenePayoff": 33.6,
-    "chartLaneA": 34.05,
-    "chartLaneB": 35.68,
-    "brand": 38.355
+    "blackout": 2.335,
+    "diveStart": 2.805,
+    "sceneFirstSecond": 4.145,
+    "callIn": 7.005,
+    "callFreeze": 8.105,
+    "gameIn": 8.59,
+    "gameFreeze": 9.21,
+    "dashIn": 9.685,
+    "dashStall": 10.305,
+    "sceneRipple": 11.095,
+    "cardTap": 11.395,
+    "cloudIn": 12.77,
+    "cloudTimeout": 14.33,
+    "notEverything": 15.275,
+    "sceneSurprise": 16.695,
+    "tilePower": 17.145,
+    "tileOffline": 18.76,
+    "tileVideo": 20.885,
+    "bufferExplain": 22.895,
+    "sceneReturn": 25.505,
+    "reconnect": 28.625,
+    "recoverInstant": 29.575,
+    "retrying": 31.355,
+    "scenePayoff": 33.42,
+    "chartLaneA": 33.87,
+    "chartLaneB": 35.625,
+    "brand": 38.205
   }
 }
