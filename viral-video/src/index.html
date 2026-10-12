@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>What If 173 Went Live</title>
+<style>
+  :root {
+    --yellow: #e2b33c;
+    --red: #ff4a3d;
+    --grey: #8b9099;
+    --body: #a9adb5;
+    --card: rgba(16, 17, 20, 0.9);
+    --mono: "DejaVu Sans Mono", "Liberation Mono", monospace;
+    --sans: "Inter", "Liberation Sans", sans-serif;
+    --display: "Inter Display", "Inter", sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #0b0c0e; font-family: var(--sans); color: #fff; }
+  #stage > * { position: absolute; }
+  canvas#c { left: 0; top: 0; width: 1080px; height: 1920px; }
+
+  /* camera-feed look */
+  #feed { inset: 0 0 auto 0; height: 1240px; display: none; }
+  #feed .scan { position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(0,0,0,.20) 0 2px, transparent 2px 5px); }
+  #feed .tint { position: absolute; inset: 0; background: rgba(90, 255, 170, .05); mix-blend-mode: screen; }
+  #feed .vig { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 45% at 50% 38%, transparent 55%, rgba(0,0,0,.6) 100%); }
+  #feed canvas.noise { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .10; image-rendering: pixelated; }
+  #feed .bar { position: absolute; left: 48px; right: 48px; top: 1000px; display: flex; justify-content: space-between; align-items: center; font: 600 22px var(--mono); letter-spacing: 2px; color: rgba(255,255,255,.85); }
+  .live { display: inline-flex; align-items: center; gap: 10px; background: #e3262a; color: #fff; padding: 6px 14px; border-radius: 6px; font: 800 22px var(--sans); letter-spacing: 1.5px; }
+  .live i { width: 12px; height: 12px; border-radius: 50%; background: #fff; display: inline-block; }
+
+  /* picture-in-picture monitor (the delayed stream) */
+  #inset { left: 560px; top: 330px; width: 470px; height: 330px; border: 3px solid #3a3e46; border-radius: 6px; display: none; overflow: hidden; }
+  #inset .scan { position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(0,0,0,.22) 0 2px, transparent 2px 4px); }
+  #inset .tag { position: absolute; left: 12px; top: 12px; }
+  #inset .delay { position: absolute; right: 12px; top: 14px; font: 700 17px var(--mono); color: #fff; background: rgba(0,0,0,.55); padding: 4px 8px; border-radius: 4px; }
+  #inset .off { position: absolute; inset: 0; background: #050506; display: none; align-items: center; justify-content: center; font: 800 30px var(--mono); letter-spacing: 3px; color: #d8d8d8; }
+  #inset canvas.noise { position: absolute; inset: 0; width: 100%; height: 100%; display: none; image-rendering: pixelated; }
+  #insetLabel { left: 560px; top: 296px; font: 700 17px var(--mono); letter-spacing: 2px; color: var(--grey); display: none; }
+
+  /* rule diagram */
+  #arrow { left: 0; top: 0; width: 1080px; height: 1920px; display: none; overflow: visible; }
+  .figlabel { font: 700 19px var(--mono); letter-spacing: 3px; transform: translate(-50%, 0); display: none; white-space: nowrap; }
+  #eye { width: 110px; height: 70px; transform: translate(-50%, -50%); display: none; }
+  #sfxText { font: italic 500 24px var(--mono); color: #9aa0a8; letter-spacing: 1px; transform: translate(-50%, -50%); display: none; white-space: nowrap; }
+
+  /* buffering */
+  #spinner { left: 540px; top: 600px; width: 120px; height: 120px; margin: -60px 0 0 -60px; border-radius: 50%; border: 10px solid rgba(255,255,255,.22); border-top-color: #fff; display: none; }
+  #bufText { left: 540px; top: 700px; transform: translateX(-50%); font: 700 24px var(--mono); letter-spacing: 4px; color: #fff; display: none; }
+  #dim { inset: 0; background: #000; opacity: 0; }
+
+  /* live chat */
+  #chat { left: 560px; top: 420px; width: 480px; height: 600px; display: none; }
+  .msg { position: absolute; left: 0; right: 0; display: flex; gap: 12px; align-items: flex-start; background: rgba(0,0,0,.45); border-radius: 14px; padding: 10px 14px; }
+  .msg .av { width: 38px; height: 38px; border-radius: 50%; flex: none; }
+  .msg .n { font: 600 16px var(--mono); color: #9aa0a8; }
+  .msg .t { font: 700 24px var(--sans); color: #fff; line-height: 1.2; }
+
+  #bottomFade { left: 0; right: 0; top: 820px; height: 1100px; background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(4,4,6,.82) 30%, #040406 46%, #040406 100%); }
+
+  /* UI */
+  #handle { left: 48px; top: 118px; font: 600 30px var(--sans); color: rgba(255,255,255,.75); }
+  #hud { left: 40px; top: 186px; background: var(--card); border-radius: 10px; padding: 10px 20px 8px; min-width: 190px; }
+  #hud .l { font: 600 15px var(--mono); letter-spacing: 2px; color: var(--grey); }
+  #hud .v { font: 800 44px var(--display); color: var(--red); line-height: 1.1; font-variant-numeric: tabular-nums; }
+  #kicker { right: 44px; top: 100px; background: var(--card); border-radius: 12px; padding: 14px 24px 14px 30px; text-align: right; }
+  #kicker .l { font: 600 15px var(--mono); letter-spacing: 2.5px; color: var(--grey); }
+  #kicker .t { font: 800 46px var(--display); line-height: 1.12; letter-spacing: -0.5px; }
+  #kicker .s { font: 600 15px var(--mono); letter-spacing: 1px; color: var(--yellow); }
+  #banner { left: 540px; top: 262px; transform: translateX(-50%); background: rgba(8,8,10,.94); border-radius: 12px; padding: 16px 30px 14px; text-align: center; white-space: nowrap; }
+  #banner .t { font: 800 38px var(--display); }
+  #banner .s { font: 600 15px var(--mono); letter-spacing: 2px; color: var(--yellow); margin-top: 4px; }
+
+  #text { left: 48px; top: 1190px; width: 860px; }
+  #text .label { font: 700 22px var(--mono); letter-spacing: 3px; color: var(--yellow); }
+  #text .title { font: 900 80px var(--display); line-height: .98; letter-spacing: -1px; text-transform: uppercase; margin-top: 12px; }
+  #text .title span { display: inline-block; margin-right: .22em; }
+  #text .body { font: 500 31px var(--sans); line-height: 1.34; color: var(--body); margin-top: 24px; width: 820px; }
+
+  #flash { inset: 0; background: #ff2a1a; mix-blend-mode: screen; opacity: 0; }
+  #black { inset: 0; background: #000; opacity: 0; }
+</style>
+<script type="importmap">{ "imports": { "three": "/node_modules/three/build/three.module.js" } }</script>
+</head>
+<body>
+<div id="stage">
+  <canvas id="c" width="1080" height="1920"></canvas>
+
+  <div id="feed">
+    <canvas class="noise" width="270" height="310"></canvas>
+    <div class="tint"></div><div class="scan"></div><div class="vig"></div>
+    <div class="bar"><span><span class="live"><i></i>LIVE</span>&nbsp;&nbsp;CAM 01 · SCP-173 CELL</span><span class="clock">00:00:00</span></div>
+  </div>
+
+  <div id="insetLabel">STREAM · WHAT VIEWERS SEE</div>
+  <div id="inset">
+    <div class="scan"></div>
+    <span class="live tag"><i></i>LIVE</span>
+    <span class="delay">−2.4 s</span>
+    <canvas class="noise" width="118" height="83"></canvas>
+    <div class="off">STREAM OFFLINE</div>
+  </div>
+
+  <svg id="arrow" viewBox="0 0 1080 1920">
+    <defs><marker id="head" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e2b33c"/></marker></defs>
+    <line x1="0" y1="0" x2="0" y2="0" stroke="#e2b33c" stroke-width="7" marker-end="url(#head)"/>
+  </svg>
+  <svg id="eye" viewBox="0 0 110 70">
+    <g class="open"><path d="M5,35 Q55,-8 105,35 Q55,78 5,35 z" fill="#f2efe8"/><circle cx="55" cy="35" r="17" fill="#15171b"/><circle cx="61" cy="29" r="5" fill="#fff"/></g>
+    <g class="closed"><path d="M8,32 Q55,62 102,32" stroke="#f2efe8" stroke-width="7" fill="none" stroke-linecap="round"/></g>
+  </svg>
+  <div class="figlabel" id="labA">LOOKING</div>
+  <div class="figlabel" id="labB">FROZEN</div>
+  <div id="sfxText">*scraping*</div>
+
+  <div id="chat"></div>
+
+  <div id="dim"></div>
+  <div id="spinner"></div>
+  <div id="bufText">BUFFERING…</div>
+
+  <div id="bottomFade"></div>
+
+  <div id="handle"></div>
+  <div id="hud"><div class="l"></div><div class="v"></div></div>
+  <div id="kicker"><div class="l"></div><div class="t"></div><div class="s"></div></div>
+  <div id="banner"><div class="t">DOES A SCREEN COUNT?</div><div class="s">NOBODY HAS EVER TESTED IT</div></div>
+  <div id="text"><div class="label"></div><div class="title"></div><div class="body"></div></div>
+
+  <div id="flash"></div>
+  <div id="black"></div>
+</div>
+<script type="module" src="./scene.js"></script>
+</body>
+</html>
