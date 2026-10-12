@@ -4,8 +4,8 @@
   "fps": 30,
   "width": 1080,
   "height": 1920,
-  "duration": 39.72,
-  "durationInFrames": 1192,
+  "duration": 39.805,
+  "durationInFrames": 1194,
   "cues": [
     {
       "id": "c01",
@@ -98,10 +98,10 @@
         ]
       ],
       "start": 9.62,
-      "end": 10.33,
+      "end": 10.335,
       "src": [
         9.79,
-        10.5
+        10.505
       ]
     },
     {
@@ -114,8 +114,8 @@
           "coral"
         ]
       ],
-      "start": 10.65,
-      "end": 11.405,
+      "start": 10.655,
+      "end": 11.41,
       "src": [
         10.845,
         11.6
@@ -131,11 +131,11 @@
           "coral"
         ]
       ],
-      "start": 11.905,
-      "end": 13.265,
+      "start": 11.91,
+      "end": 13.275,
       "src": [
         12.095,
-        13.455
+        13.46
       ]
     },
     {
@@ -148,8 +148,8 @@
           "coral"
         ]
       ],
-      "start": 13.565,
-      "end": 15.265,
+      "start": 13.575,
+      "end": 15.275,
       "src": [
         13.93,
         15.63
@@ -165,11 +165,11 @@
           "cyan"
         ]
       ],
-      "start": 15.715,
-      "end": 17.15,
+      "start": 15.725,
+      "end": 17.225,
       "src": [
         16.165,
-        17.6
+        17.665
       ]
     },
     {
@@ -182,8 +182,8 @@
           "cyan"
         ]
       ],
-      "start": 17.65,
-      "end": 18.825,
+      "start": 17.725,
+      "end": 18.9,
       "src": [
         18.115,
         19.29
@@ -199,8 +199,8 @@
           "cyan"
         ]
       ],
-      "start": 19.125,
-      "end": 20.87,
+      "start": 19.2,
+      "end": 20.945,
       "src": [
         19.795,
         21.54
@@ -216,8 +216,8 @@
           "cyan"
         ]
       ],
-      "start": 21.17,
-      "end": 23.125,
+      "start": 21.245,
+      "end": 23.2,
       "src": [
         21.91,
         23.865
@@ -233,8 +233,8 @@
           "cyan"
         ]
       ],
-      "start": 23.375,
-      "end": 25.68,
+      "start": 23.45,
+      "end": 25.755,
       "src": [
         24.36,
         26.665
@@ -245,8 +245,8 @@
       "group": "g11",
       "text": "Then, five seconds later,",
       "highlight": [],
-      "start": 26.28,
-      "end": 27.905,
+      "start": 26.355,
+      "end": 27.98,
       "src": [
         27.115,
         28.74
@@ -262,8 +262,8 @@
           "cyan"
         ]
       ],
-      "start": 28.025,
-      "end": 29.205,
+      "start": 28.1,
+      "end": 29.28,
       "src": [
         28.985,
         30.165
@@ -279,10 +279,10 @@
           "cyan"
         ]
       ],
-      "start": 29.605,
-      "end": 31.275,
+      "start": 29.68,
+      "end": 31.355,
       "src": [
-        30.72,
+        30.715,
         32.39
       ]
     },
@@ -296,11 +296,11 @@
           "amber"
         ]
       ],
-      "start": 31.575,
-      "end": 33.515,
+      "start": 31.655,
+      "end": 33.6,
       "src": [
         32.855,
-        34.795
+        34.8
       ]
     },
     {
@@ -317,8 +317,8 @@
           "amber"
         ]
       ],
-      "start": 33.965,
-      "end": 38.12,
+      "start": 34.05,
+      "end": 38.205,
       "src": [
         35.21,
         39.365
@@ -326,13 +326,13 @@
       "splits": [
         {
           "text": "Because getting the connection back",
-          "start": 33.965,
-          "end": 35.595
+          "start": 34.05,
+          "end": 35.68
         },
         {
           "text": "isn't the same as getting everything working again.",
-          "start": 35.595,
-          "end": 38.12
+          "start": 35.68,
+          "end": 38.205
         }
       ]
     }
@@ -345,25 +345,25 @@
     "callFreeze": 8.575,
     "gameIn": 9.12,
     "gameFreeze": 9.74,
-    "dashIn": 10.15,
-    "dashStall": 10.77,
-    "sceneRipple": 11.505,
-    "cardTap": 11.805,
-    "cloudIn": 13.365,
-    "cloudTimeout": 14.615,
-    "notEverything": 15.715,
-    "sceneSurprise": 17.2,
-    "tilePower": 17.65,
-    "tileOffline": 19.125,
-    "tileVideo": 21.17,
-    "bufferExplain": 23.225,
-    "sceneReturn": 25.83,
-    "reconnect": 28.745,
-    "recoverInstant": 29.725,
-    "retrying": 31.475,
-    "scenePayoff": 33.515,
-    "chartLaneA": 33.965,
-    "chartLaneB": 35.595,
-    "brand": 38.27
+    "dashIn": 10.155,
+    "dashStall": 10.775,
+    "sceneRipple": 11.51,
+    "cardTap": 11.81,
+    "cloudIn": 13.375,
+    "cloudTimeout": 14.625,
+    "notEverything": 15.725,
+    "sceneSurprise": 17.275,
+    "tilePower": 17.725,
+    "tileOffline": 19.2,
+    "tileVideo": 21.245,
+    "bufferExplain": 23.3,
+    "sceneReturn": 25.905,
+    "reconnect": 28.82,
+    "recoverInstant": 29.8,
+    "retrying": 31.555,
+    "scenePayoff": 33.6,
+    "chartLaneA": 34.05,
+    "chartLaneB": 35.68,
+    "brand": 38.355
   }
 }

@@ -30,11 +30,11 @@
     { "id": "c12", "gap": 0.3,  "group": "g08", "text": "Offline systems would keep running.", "highlight": [["keep running", "cyan"]] },
     { "id": "c13", "gap": 0.3,  "group": "g09", "text": "And some videos wouldn't even pause.", "highlight": [["wouldn't even pause", "cyan"]] },
     { "id": "c14", "gap": 0.25, "group": "g10", "text": "The next few seconds are already downloaded.", "highlight": [["already downloaded", "cyan"]] },
-    { "id": "c15", "gap": 0.6,  "group": "g11", "segments": 2, "text": "Then, five seconds later,", "highlight": [] },
+    { "id": "c15", "gap": 0.6,  "group": "g11", "text": "Then, five seconds later,", "highlight": [] },
     { "id": "c16", "gap": 0.12, "group": "g11", "text": "the internet comes back.", "highlight": [["comes back", "cyan"]] },
     { "id": "c17", "gap": 0.4,  "group": "g12", "text": "Some apps recover right away.", "highlight": [["right away", "cyan"]] },
     { "id": "c18", "gap": 0.3,  "group": "g13", "text": "Others are still waiting to retry.", "highlight": [["waiting to retry", "amber"]] },
-    { "id": "c19", "gap": 0.45, "group": "g14", "segments": 2, "text": "Because getting the connection back isn't the same as getting everything working again.",
+    { "id": "c19", "gap": 0.45, "group": "g14", "text": "Because getting the connection back isn't the same as getting everything working again.",
       "highlight": [["connection back", "cyan"], ["everything working", "amber"]],
       "captionSplits": ["Because getting the connection back", "isn't the same as getting everything working again."] }
   ],

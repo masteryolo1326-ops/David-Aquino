@@ -5,8 +5,9 @@ Reads  src/episodes/<id>/episode.json  (script cues, gaps, event anchors)
 Writes src/episodes/<id>/timeline.json (absolute times for cues, caption splits, events)
        public/audio/<id>/narration.wav (narration re-spaced onto the video timeline)
 
-The narration take is split at its natural pauses. Each speech segment must map to
-exactly one cue, so the script and the take can never silently drift apart.
+The narration take is split at its natural pauses, and the segments are aligned to the script's
+cues by expected speaking time (see align_segments). The alignment is printed with a per-cue
+duration ratio so a misread or skipped line is caught before rendering.
 """
 import argparse
 import json
@@ -78,6 +79,45 @@ def find_split(env: np.ndarray, seg, frac: float, search: float = 0.45) -> float
     return float((a + int(np.argmin(score))) * HOP)
 
 
+def align_segments(segs, cues, w_internal=2.0):
+    """Partition consecutive speech segments into one group per cue.
+
+    Different voices pause in different places, so instead of demanding one segment per cue we
+    pick the partition whose groups best match each cue's expected speaking time (from its
+    character count) while keeping long pauses *between* cues rather than inside them.
+    """
+    n, m = len(segs), len(cues)
+    chars = np.array([max(1, len(c["text"])) for c in cues], dtype=float)
+    speech = np.array([e - s for s, e in segs])
+    rate = speech.sum() / chars.sum()
+    gaps = np.array([0.0] + [segs[i][0] - segs[i - 1][1] for i in range(1, n)])
+
+    def group_cost(j, a, b):  # cue j takes segments a..b-1
+        dur = speech[a:b].sum()
+        ratio = np.log(dur / (chars[j] * rate))
+        return ratio * ratio + w_internal * gaps[a + 1:b].sum()
+
+    inf = float("inf")
+    f = np.full((m + 1, n + 1), inf)
+    back = np.zeros((m + 1, n + 1), dtype=int)
+    f[0][0] = 0.0
+    for j in range(1, m + 1):
+        for i in range(j, n - (m - j) + 1):
+            for a in range(j - 1, i):
+                if f[j - 1][a] == inf:
+                    continue
+                c = f[j - 1][a] + group_cost(j - 1, a, i)
+                if c < f[j][i]:
+                    f[j][i], back[j][i] = c, a
+    groups, i = [], n
+    for j in range(m, 0, -1):
+        a = back[j][i]
+        groups.append(segs[a:i])
+        i = a
+    groups.reverse()
+    return groups, rate
+
+
 def write_wav(path: Path, x: np.ndarray):
     path.parent.mkdir(parents=True, exist_ok=True)
     pcm = np.clip(x, -1, 1)
@@ -98,21 +138,24 @@ def main():
     ep = json.loads((ep_dir / "episode.json").read_text())
     nar = ep["narration"]
     x = decode(ROOT / nar["source"], nar["tempo"])
+    x = x / (np.max(np.abs(x)) + 1e-9) * 0.9  # level-independent silence threshold
     env = envelope_db(x)
-    segs = speech_segments(env, nar["silenceThresholdDb"], nar["minSilence"] / nar["tempo"])
     cues = ep["cues"]
-    # A cue may span several speech segments (an internal pause, e.g. "Then, | five seconds later").
-    expected = sum(c.get("segments", 1) for c in cues)
-    if len(segs) != expected:
-        print(f"ERROR: found {len(segs)} speech segments but the cues expect {expected}.", file=sys.stderr)
-        for i, (s, e) in enumerate(segs):
-            print(f"  seg {i:02d}: {s:6.2f}-{e:6.2f} ({e - s:4.2f}s)", file=sys.stderr)
+    # Find speech segments; if the take has fewer pauses than cues, look for shorter pauses.
+    for min_sil in (nar["minSilence"], 0.13, 0.1, 0.075, 0.06):
+        segs = speech_segments(env, nar["silenceThresholdDb"], min_sil / nar["tempo"])
+        if len(segs) >= len(cues):
+            break
+    if len(segs) < len(cues):
+        print(f"ERROR: only {len(segs)} speech segments for {len(cues)} cues — check the take.", file=sys.stderr)
         sys.exit(1)
-    cue_segs, k = [], 0
-    for c in cues:
-        n = c.get("segments", 1)
-        cue_segs.append(segs[k:k + n])
-        k += n
+    cue_segs, rate = align_segments(segs, cues)
+    print(f"{len(segs)} speech segments aligned to {len(cues)} cues ({1 / rate:.1f} chars/s)")
+    for c, g in zip(cues, cue_segs):
+        dur = sum(e - s0 for s0, e in g)
+        ratio = dur / (len(c["text"]) * rate)
+        flag = "  <-- check" if not 0.6 < ratio < 1.6 else ""
+        print(f"  {c['id']} {len(g)} seg  {dur:5.2f}s  x{ratio:4.2f}  {c['text'][:48]}{flag}")
 
     pad_b, pad_a = nar["padBefore"], nar["padAfter"]
     t = ep["leadIn"]
@@ -132,15 +175,16 @@ def main():
         }
         if "captionSplits" in cue:
             parts = cue["captionSplits"]
-            if len(parts) == len(parts_src):
-                # Each caption part is its own speech segment: split exactly at the pauses.
-                bounds = [ps[0] - s + start for ps in parts_src[1:]]
-            else:
-                total_chars = sum(len(p) for p in parts)
-                acc, bounds = 0, []
-                for p in parts[:-1]:
-                    acc += len(p)
-                    bounds.append(find_split(env, (s, e), acc / total_chars) - s + start)
+            total_chars = sum(len(p) for p in parts)
+            internal = [ps[0] for ps in parts_src[1:]]  # starts of segments after internal pauses
+            acc, bounds = 0, []
+            for p in parts[:-1]:
+                acc += len(p)
+                guess = s + (e - s) * acc / total_chars
+                near = [b for b in internal if abs(b - guess) < 0.7]
+                # Prefer a real pause near the proportional point; else the quietest moment.
+                cut = min(near, key=lambda b: abs(b - guess)) if near else find_split(env, (s, e), acc / total_chars)
+                bounds.append(cut - s + start)
             edges = [start] + bounds + [end]
             item["splits"] = [
                 {"text": p, "start": round(edges[k], 4), "end": round(edges[k + 1], 4)} for k, p in enumerate(parts)
