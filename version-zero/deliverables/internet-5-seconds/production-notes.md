@@ -160,3 +160,26 @@ version-zero/
 - Automated safe-zone linting: render a debug overlay of TikTok's UI and flag elements crossing it.
 - Optional alternate cuts from the same timeline: 16:9 for YouTube, and 15 s teasers.
 - A GPU render node to cut render time for longer episodes.
+
+## Validation results: final file
+
+`npm run validate` on `version-zero-internet-5-seconds.mp4` (Dan Dan narration, rendered in 446 s, 48 MB):
+
+```
+PASS file exists (48M)
+PASS video codec h264
+PASS audio codec aac (48000 Hz, 2 ch)
+PASS resolution 1080x1920 (9:16)
+PASS frame rate 30 fps
+PASS pixel format yuv420p
+PASS duration 39.68 s (expected 39.67 s)
+PASS duration within 30–40 s target
+PASS full decode: no errors
+PASS frame count 1190
+PASS no black frames
+PASS no frozen (static >1.2 s) segments
+PASS audio present throughout (no silence >1.2 s)
+info integrated loudness: -14.0 LUFS (target -14)
+PASS audio in sync with timeline mix (offset_ms=0.0 correlation=1.000)
+ALL CHECKS PASSED
+```
